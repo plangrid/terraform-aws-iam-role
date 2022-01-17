@@ -1,0 +1,40 @@
+name: 'Terraform CI'
+on:
+  - pull_request
+jobs:
+  terraform_checks:
+    name: Terraform Checks
+    runs-on: self-hosted
+    steps:
+      - name: Clean Workspace
+        uses: AutoModality/action-clean@v1.1.0
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Setup Terraform module SSH key
+        uses: webfactory/ssh-agent@v0.5.2
+        with:
+            ssh-private-key: ${{ secrets.GH_ACTIONS_SSH_KEY }}
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+      - name: Run Terraform fmt check
+        id: fmt
+        run: terraform fmt -check
+      - name: Init Terraform
+        id: init
+        run: terraform init -backend=false
+      - name: Validate Terraform
+        id: validate
+        run: terraform validate
+      - name: Generate Terraform Docs
+        uses: terraform-docs/gh-actions@v0.6.1
+        with:
+          working-dir: .
+          output-file: README.md
+          output-method: replace
+          git-push: "true"
+          git-commit-message: "fix: committing tf usage doc changes"
+      - name: Commitlint for Semantic Release
+        uses: wagoid/commitlint-github-action@v3
