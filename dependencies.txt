@@ -1,0 +1,4 @@
+https://github.com/cloudposse/terraform-aws-iam-policy-document-aggregator.git?ref=tags/0.1.2
+https://github.com/cloudposse/terraform-aws-kms-key.git?ref=master
+https://github.com/cloudposse/terraform-aws-s3-bucket.git?ref=master
+https://github.com/cloudposse/terraform-terraform-label.git?ref=tags/0.1.3

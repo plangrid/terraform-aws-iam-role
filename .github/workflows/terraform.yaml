@@ -1,0 +1,18 @@
+name: 'Terraform CI'
+on:
+  - pull_request
+jobs:
+  terraform_checks:
+    name: Terraform Checks
+    runs-on: self-hosted
+    steps:
+      - name: Clean Workspace
+        uses: AutoModality/action-clean@v1.1.0
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v2
+      - uses: pre-commit/action@v2.0.3
+        name: Run pre-commit
