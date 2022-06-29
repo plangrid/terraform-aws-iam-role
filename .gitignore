@@ -1,17 +1,19 @@
-#  Local .terraform directories
-**/.terraform/*
-
-# .tfstate files
-*.tfstate
-*.tfstate.*
-
-# .tfvars files
-*.tfvars
-
-# IDE files
+# pycharm
 .idea
-*.iml
 
-# Build harness files
-.build-harness
-build-harness
+# pyenv
+.python-version
+
+# used for terraform testing
+local.tfvars
+.terraform
+.terragrunt-cache
+.terraform.lock.hcl
+
+Gemfile
+Gemfile.lock
+
+test/integration/testing-replaced.hcl
+
+# versions.tf is generated, see make file
+versions.tf

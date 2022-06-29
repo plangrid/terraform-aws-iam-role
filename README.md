@@ -326,3 +326,31 @@ Check out [our other projects][github], [follow us on twitter][twitter], [apply 
   [share_googleplus]: https://plus.google.com/share?url=https://github.com/cloudposse/terraform-aws-iam-role
   [share_email]: mailto:?subject=terraform-aws-iam-role&body=https://github.com/cloudposse/terraform-aws-iam-role
   [beacon]: https://ga-beacon.cloudposse.com/UA-76589703-4/cloudposse/terraform-aws-iam-role?pixel&cs=github&cm=readme&an=terraform-aws-iam-role
+
+
+
+<hr />
+
+# Local Development
+
+If you are doing local development on this module, be sure to check the Makefile for helpful commands. Run `make help` for help text.
+
+With Dacloud Terraform modules, we do not commit a versions.tf file and instead rely on terragrunt to generate that at apply time. 
+
+To use terraform locally with this module (to run fmt, validate, etc), you first have to generate a versions.tf file for this repo
+
+```shell
+make generate-versions-tf
+```
+
+You can also terraform init the repo using the makefile and it will generate a versions.tf as needed
+
+```shell
+make init
+```
+
+fmt and validate also have targets that will init as needed
+```shell
+make fmt
+make validate
+```
